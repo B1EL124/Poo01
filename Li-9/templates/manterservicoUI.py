@@ -3,19 +3,19 @@ import pandas as pd
 import time
 from views import View
 
-class ManterClienteUI:
+class ManterServicoUI:
 
     def main():
-        st.header("Cadastro de Clientes")
+        st.header("Cadastro de Serviços")
         tab1, tab2, tab3, tab4 = st.tabs(["Listar", "Inserir", "Atualizar", "Excluir"])
-        with tab1: ManterClienteUI.listar()
-        with tab2: ManterClienteUI.inserir()
-        with tab3: ManterClienteUI.atualizar()
-        with tab4: ManterClienteUI.excluir()
+        with tab1: ManterServicoUI.listar()
+        with tab2: ManterServicoUI.inserir()
+        with tab3: ManterServicoUI.atualizar()
+        with tab4: ManterServicoUI.excluir()
     
     def listar():
         clientes = View.cliente_listar()
-        if len(clientes) == 0: st.write("Nenhum cliente cadastrado")
+        if len(clientes) == 0: st.write("Nenhum serviço cadastrado")
         else:
             list_dic = []
             for obj in clientes: list_dic.append(obj.to_json())
@@ -43,14 +43,14 @@ class ManterClienteUI:
             if st.button("Atualizar"):
                 id = op.get_id()
                 View.cliente_atualizar(id, nome, email, fone)
-                st.success("Cliente atualizado com sucesso")
+                st.success("Serviço atualizado com sucesso")
 
     def excluir():
         clientes = View.cliente_listar()
         if len(clientes) == 0: st.write("Nenhum cliente cadastrado")
         else:
-            op = st.selectbox("Exclusão de Clientes", clientes)
+            op = st.selectbox("Exclusão de Serviços", clientes)
             if st.button("Excluir"):
                 id = op.get_id()
                 View.cliente_excluir(id)
-                st.success("Cliente excluído com sucesso")
+                st.success("Serviço excluído com sucesso")
