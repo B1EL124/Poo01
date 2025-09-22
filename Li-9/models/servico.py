@@ -1,6 +1,6 @@
 import json
 
-class Cliente:
+class Servico:
     def __init__(self, id, descricao, valor):
         self.set_id(id)
         self.set_descricao(descricao)
@@ -29,9 +29,9 @@ class Cliente:
     
     @staticmethod
     def from_json(dic):
-        return Cliente(dic["id"], dic["descricao"], dic["valor"])
+        return Servico(dic["id"], dic["descricao"], dic["valor"])
 
-class ClienteDAO:
+class ServicoDAO:
     __objetos = []
     @classmethod
     def inserir(cls, obj):
