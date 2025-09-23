@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import time
-from viewss import View
+from views import View
 
 class ManterServicoUI:
 
@@ -23,11 +23,10 @@ class ManterServicoUI:
             st.dataframe(df)
 
     def inserir():
-        id = st.text_input("Informe o id")
-        descricao = st.text_input("Informe o descricao")
+        descricao = st.text_input("Informe o descriçao")
         valor = st.text_input("Informe o valor")
-        if st.button("Inserir"):
-            View.servico_inserir(id, descricao, valor)
+        if st.button("Inserir serviço"):
+            View.servico_inserir(descricao, valor)
             st.success("Serviço inserido com sucesso")
             time.sleep(2)
             st.rerun()
@@ -40,17 +39,17 @@ class ManterServicoUI:
             id = st.text_input("Novo id", op.get_id())
             descricao = st.text_input("Novo e-descricao", op.get_descricao())
             valor = st.text_input("Novo valor", op.get_valor())
-            if st.button("Atualizar"):
+            if st.button("Atualizar serviço"):
                 id = op.get_id()
                 View.servico_atualizar(id, descricao, valor)
                 st.success("Serviço atualizado com sucesso")
 
     def excluir():
         servicos = View.servico_listar()
-        if len(servicos) == 0: st.write("Nenhum servico cadastrado")
+        if len(servicos) == 0: st.write("Nenhum serviço cadastrado")
         else:
             op = st.selectbox("Exclusão de Serviços", servicos)
-            if st.button("Excluir"):
+            if st.button("Excluir serviço", ):
                 id = op.get_id()
                 View.servico_excluir(id)
                 st.success("Serviço excluído com sucesso")
