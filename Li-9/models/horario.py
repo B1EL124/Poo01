@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+
 class Horario:
     def __init__(self, id, data):
         self.set_id(id)
@@ -9,7 +10,7 @@ class Horario:
         self.set_id_servico(0)
 
     def __str__(self):
-        return f"{self.__id} - {self.__data.strftime('%d/%m/%Y %H:%M')} - {self.__confirmado}"
+        return f"{self.__id} - {self.__data.strftime('%d/%m/%y %H:%M')} - {self.__confirmado}"
     
     def get_id(self): return self.__id
     def get_data(self): return self.__data
@@ -27,7 +28,7 @@ class Horario:
         return dic
     @staticmethod
     def from_json(dic):
-        horario = Horario(dic["id"], datetime.strptime(dic["data"], "%d/%m/%Y%H:%M"))
+        horario = Horario(dic["id"], datetime.strptime(dic["data"], "%d/%m/%Y %H:%M"))
         horario.set_confirmado(dic["confirmado"])
         horario.set_id_cliente(dic["id_cliente"])
         horario.set_id_servico(dic["id_servico"])
