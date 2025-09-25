@@ -55,14 +55,14 @@ class View:
 
     def profissional_listar():
         return ProfissionalDAO.listar()
-    def cliente_listar_id(id):
-        return ClienteDAO.listar_id(id)
-    def cliente_inserir(nome, email, fone):
-        cliente = Cliente(0, nome, email, fone)
-        ClienteDAO.inserir(cliente)
-    def cliente_atualizar(id, nome, email, fone):
-        cliente = Cliente(id, nome, email, fone)
-        ClienteDAO.atualizar(cliente)
-    def cliente_excluir(id):
-        cliente = Cliente(id, "", "", "")
-        ClienteDAO.excluir(cliente)
+    def profissional_listar_id(id):
+        return ProfissionalDAO.listar_id(id)
+    def profissional_inserir(nome, especialidade, conselho):
+        profissional = Profissional(0, nome, especialidade, conselho)
+        ProfissionalDAO.inserir(profissional)
+    def profissional_atualizar(id, nome, especialidade, conselho):
+        profissional = Profissional(id, nome, especialidade, conselho)
+        ProfissionalDAO.atualizar(profissional)
+    def profissional_excluir(id):
+        profissional = Profissional(id, "", "", "")
+        ProfissionalDAO.excluir(profissional)

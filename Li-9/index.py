@@ -1,6 +1,7 @@
 from templates.manterclienteUI import ManterClienteUI
 from templates.manterservicoUI import ManterServicoUI
 from templates.manterhorarioUI import ManterHorarioUI
+from templates.manterprofissionalUI import ManterProfissionalUI
 import streamlit as st
 
 class IndexUI:
