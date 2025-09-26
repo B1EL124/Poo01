@@ -12,7 +12,7 @@ class Horario:
 
     def __str__(self):
         return f"{self.__id} - {self.__data.strftime('%d/%m/%y %H:%M')} - {self.__confirmado}"
-    
+
     def get_id(self): 
         return self.__id
     def get_data(self):
@@ -34,17 +34,26 @@ class Horario:
     def set_id_profissional(self, id_profissional): self.__id_profissional = id_profissional
 
     def to_json(self):
-        dic = {"id":self.__id, "data":self.__data.strftime("%d/%m/%Y %H:%M"), "confirmado":self.__confirmado, "id_cliente":self.__id_cliente,"id_servico":self.__id_servico,"id_profissional":self.__id_profissional}
+        dic = {"id":self.__id, "data":self.__data.strftime("%d/%m/%Y %H:%M"), "confirmado":self.__confirmado, "id_cliente":self.__id_cliente, "id_servico":self.__id_servico, "id_profissional":self.__id_profissional}
         return dic
+    
     @staticmethod
+    def from_json(dic):
+        horario = Horario(dic.get("id", 0), datetime.strptime(dic["data"], "%d/%m/%Y %H:%M"))
+        horario.set_confirmado(dic.get("confirmado", False))
+        horario.set_id_cliente(dic.get("id_cliente", 0))
+        horario.set_id_servico(dic.get("id_servico", 0))
+        horario.set_id_profissional(dic.get("id_profissional", 0))
+        return horario
+
+    '''@staticmethod
     def from_json(dic):
         horario = Horario(dic["id"], datetime.strptime(dic["data"], "%d/%m/%Y %H:%M"))
         horario.set_confirmado(dic["confirmado"])
         horario.set_id_cliente(dic["id_cliente"])
         horario.set_id_servico(dic["id_servico"])
         horario.set_id_profissional(dic["id_profissional"])
-        return horario
-
+        return horario'''
 
 class HorarioDAO:
     __objetos = []

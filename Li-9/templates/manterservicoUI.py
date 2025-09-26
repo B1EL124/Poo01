@@ -23,7 +23,7 @@ class ManterServicoUI:
             st.dataframe(df)
 
     def inserir():
-        descricao = st.text_input("Informe o descriçao")
+        descricao = st.text_input("Informe a descriçao")
         valor = st.text_input("Informe o valor")
         if st.button("Inserir serviço"):
             View.servico_inserir(descricao, valor)
@@ -37,7 +37,7 @@ class ManterServicoUI:
         else:
             op = st.selectbox("Atualização de Serviços", servicos)
             id = st.text_input("Novo id", op.get_id())
-            descricao = st.text_input("Novo e-descricao", op.get_descricao())
+            descricao = st.text_input("Nova descricao", op.get_descricao())
             valor = st.text_input("Novo valor", op.get_valor())
             if st.button("Atualizar serviço"):
                 id = op.get_id()

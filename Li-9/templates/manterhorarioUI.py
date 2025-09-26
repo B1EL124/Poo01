@@ -72,7 +72,7 @@ class ManterHorarioUI:
 
             cliente = st.selectbox("Informe o novo cliente", clientes, next((i for i, c in enumerate(clientes) if c.get_id() == id_cliente), None))
             servico = st.selectbox("Informe o novo serviço", servicos, next((i for i, s in enumerate(servicos) if s.get_id() == id_servico), None))
-            profissional = st.selectbox("Informe o novo profissional", profissional, next((i for i, s in enumerate(profissional) if p.get_id() == id_profissional), None))
+            profissional = st.selectbox("Informe o novo profissional", profissional, next((i for i, p in enumerate(profissional) if p.get_id() == id_profissional), None))
 
             if st.button("Atualizar"): 
                 id_cliente = None
