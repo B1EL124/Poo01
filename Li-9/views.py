@@ -8,7 +8,7 @@ class View:
     def cliente_criar_admin():
         for c in View.cliente_listar():
             if c.get_email() == "admin":
-                return View.cliente_inserir("admin", "admin", "fone", "1234")
+                return View.cliente_inserir("admin", "admin", "fone", "12345")
 
     def cliente_autenticar(email, senha):
         for c in View.cliente_listar():
