@@ -37,10 +37,13 @@ class IndexUI:
             IndexUI.menu_visitante()
         else:
             admin = st.session_state["usuario_nome"] == "admin"
+            tipo_usuario = st.session_state["usuario_tipo"]
             st.sidebar.write("Bem-vindo(a), " + st.session_state["usuario_nome"])
             if admin: 
                 IndexUI.menu_admin()
-            else: 
+            if tipo_usuario == "profissional":
+                IndexUI.menu_profissional()
+            elif tipo_usuario == "cliente":
                 IndexUI.menu_cliente()
             IndexUI.sair_do_sistema()
     def main():
