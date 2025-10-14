@@ -34,8 +34,7 @@ class ManterHorarioUI:
         clientes = View.cliente_listar()
         servicos = View.servico_listar()
         profissional = View.profissional_listar()
-        data = st.text_input("Informe a data e horário do serviço",
-        datetime.now().strftime("%d/%m/%Y %H:%M"))
+        data = st.text_input("Informe a data e horário do serviço", datetime.now().strftime("%d/%m/%Y %H:%M"))
         confirmado = st.checkbox("Confirmado")
         cliente = st.selectbox("Informe o cliente", clientes, index = None)
         servico = st.selectbox("Informe o serviço", servicos, index = None)

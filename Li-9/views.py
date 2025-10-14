@@ -93,7 +93,7 @@ class View:
         HorarioDAO.atualizar(c)
 
     def horario_agendar_horario(id_profissional):
-        r = [] 
+        r = []
         agora = datetime.now()
         for h in View.horario_listar():
             if h.get_data() >= agora and h.get_confirmado() == False and h.get_id_cliente() == None and h.get_id_profissional() == id_profissional:
