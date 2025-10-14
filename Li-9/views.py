@@ -1,3 +1,4 @@
+from datetime import datetime
 from models.horario import Horario, HorarioDAO
 from models.cliente import Cliente, ClienteDAO
 from models.servico import Servico, ServicoDAO
@@ -90,6 +91,15 @@ class View:
         c.set_id_servico(id_servico)
         c.set_id_profissional(id_profissional)
         HorarioDAO.atualizar(c)
+
+    def horario_agendar_horario(id_profissional):
+        r = [] 
+        agora = datetime.now()
+        for h in View.horario_listar():
+            if h.get_data() >= agora and h.get_confirmado() == False and h.get_id_cliente() == None and h.get_id_profissional() == id_profissional:
+                r.append(h)
+        r.sort(key = lambda h : h.get_data())
+        return r
 
     def horario_excluir(id):
         c = Horario(id, None)
