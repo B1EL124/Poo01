@@ -13,3 +13,11 @@ class PerfilClienteUI:
             id = op.get_id()
             View.cliente_atualizar(id, nome, email, fone, senha)
             st.success("Cliente atualizado com sucesso")
+    # def admin():
+    #     st.header("Alterar senha")
+    #     op = View.cliente_listar_id(st.session_state["usuario_id"])
+    #     senha = st.text_input("Informe a nova senha", op.get_senha(), type="password")
+    #     if st.button("Atualizar"):
+    #         id = op.get_id()
+    #         View.admin_atualizar(id, senha)
+    #         st.success("Senha atualizada com sucesso")
