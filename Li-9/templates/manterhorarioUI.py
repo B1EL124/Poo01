@@ -63,8 +63,7 @@ class ManterHorarioUI:
             profissional = View.profissional_listar()
 
             op = st.selectbox("Atualização de Horários", horarios)
-            data = st.text_input("Informe a nova data e horário do serviço",
-            op.get_data().strftime("%d/%m/%Y %H:%M"))
+            data = st.text_input("Informe a nova data e horário do serviço", op.get_data().strftime("%d/%m/%Y %H:%M"))
 
             confirmado = st.checkbox("Nova confirmação", op.get_confirmado())
 

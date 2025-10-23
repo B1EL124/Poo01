@@ -1,6 +1,7 @@
 import streamlit as st
 from views import View
 import time
+from datetime import datetime
 class PerfilProfissionalUI:
     def main():
         st.header("Meus Dados")
@@ -14,12 +15,7 @@ class PerfilProfissionalUI:
             id = op.get_id()
             View.profissional_atualizar(id, nome, especialidade, conselho, email, senha)
             st.success("Profissional atualizado com sucesso")
-    # def abrir_agenda():
-    #     st.header("Abrir Minha Agenda")
-    #     data = st.text_input("Informe a data no formato dd/mm/aaaa", op.get_data())
-    #     hora_ini = st.text_input("Informe o horário incial no formato HH:MM", op.get_hora_ini())
-    #     hora_fim = st.text_input("Informe o horário final no formato HH:MM", op.get_hora_fim())
-    #     intervalo = st.text_input("Informe o intervalo entre os horários (min)", op.get_intervalo())
+
     # def main():
     #     st.header("Agendar Serviço")
     #     profs = View.profissional_listar()
