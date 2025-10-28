@@ -8,6 +8,10 @@ from templates.perfilclienteUI import PerfilClienteUI
 from templates.perfilprofissionalUI import PerfilProfissionalUI
 from templates.agendarservicoUI import AgendarServicoUI
 from templates.abriragendaUI import AbrirAgendaUI
+from templates.alterarsenhaUI import AlterarSenhaUI
+from templates.confirmaservicoUI import ConfirmarServicoUI
+from templates.visualizaragendaUI import VisualizarAgendaUI
+from templates.visualizarservicosUI import VisualizarServicosUI
 from views import View
 import streamlit as st
 
