@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 from views import View
 
 class ConfirmarServicoUI:
@@ -39,7 +40,7 @@ class ConfirmarServicoUI:
                 return
 
             horario.set_confirmado(True)
-            View.horario_atualizar(horario)
+            View.horario_atualizar(horario.get_id(), horario.get_data(), horario.get_confirmado(), horario.get_id_cliente(), horario.get_id_servico(), horario.get_id_profissional())
             st.success("Serviço confirmado com sucesso!")
-
+            time.sleep(2)
             st.rerun()
