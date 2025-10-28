@@ -79,6 +79,9 @@ class View:
         c.set_id_profissional(id_profissional)
         HorarioDAO.inserir(c)
 
+    def horario_listar_id(id_hoario):
+        return HorarioDAO.listar_id(id_hoario)
+
     def horario_listar():
         r = HorarioDAO.listar()
         r.sort(key = lambda obj : obj.get_data())
@@ -91,6 +94,15 @@ class View:
         c.set_id_servico(id_servico)
         c.set_id_profissional(id_profissional)
         HorarioDAO.atualizar(c)
+
+    def horario_filtrar_profissional(id_profissional):
+        r = []
+        agora = datetime.now()
+        for h in View.horario_listar():
+            if h.get_data() >= agora and h.get_confirmado() == False and h.get_id_profissional() == id_profissional:
+                r.append(h)
+        r.sort(key = lambda h : h.get_data())
+        return r
 
     def horario_agendar_horario(id_profissional):
         r = []
