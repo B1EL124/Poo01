@@ -95,10 +95,20 @@ class View:
         c.set_id_profissional(id_profissional)
         HorarioDAO.atualizar(c)
 
+    def horario_filtrar_cliente(id_cliente):
+        r = []
+        agora = datetime.now()
+        for h in View.horario_listar():
+            if h.get_data() >= agora and h.get_id_cliente() == id_cliente:
+                r.append(h)
+        r.sort(key = lambda h : h.get_data())
+        return r
+
     def horario_filtrar_profissional(id_profissional):
         r = []
         agora = datetime.now()
         for h in View.horario_listar():
+            print(h.get_data(), type(h.get_data()), agora)
             if h.get_data() >= agora and h.get_confirmado() == False and h.get_id_profissional() == id_profissional:
                 r.append(h)
         r.sort(key = lambda h : h.get_data())
