@@ -23,12 +23,17 @@ class ManterServicoUI:
             st.dataframe(df)
 
     def inserir():
-        descricao = st.text_input("Informe a descriçao")
-        valor = st.text_input("Informe o valor")
-        if st.button("Inserir serviço"):
-            View.servico_inserir(descricao, valor)
-            st.success("Serviço inserido com sucesso")
-            time.sleep(2)
+        ... # mantenha o código até aqui e insira o try-except abaixo
+        if st.button("Inserir"):
+            try:
+                View.servico_inserir(descricao, float(valor))
+                st.success("Serviço inserido com sucesso")
+
+            except ValueError as erro:
+            st.error(erro)
+            time.sleep(
+            2
+            )
             st.rerun()
 
     def atualizar():
