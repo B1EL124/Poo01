@@ -12,9 +12,12 @@ class PerfilProfissionalUI:
         email = st.text_input("Informe o novo e-mail", op.get_email())
         senha = st.text_input("Informe a nova senha", op.get_senha(), type="password")
         if st.button("Atualizar"):
-            id = op.get_id()
-            View.profissional_atualizar(id, nome, especialidade, conselho, email, senha)
-            st.success("Profissional atualizado com sucesso")
+            try:
+                id = op.get_id()
+                View.profissional_atualizar(id, nome, especialidade, conselho, email, senha)
+                st.success("Profissional atualizado com sucesso")
+            except ValueError as erro:
+                st.error(erro)
 
     # def main():
     #     st.header("Agendar Serviço")

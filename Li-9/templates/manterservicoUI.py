@@ -23,17 +23,16 @@ class ManterServicoUI:
             st.dataframe(df)
 
     def inserir():
-        ... # mantenha o código até aqui e insira o try-except abaixo
+        descricao = st.text_input("Informe a descriçao")
+        valor = st.text_input("Informe o valor")
+        
         if st.button("Inserir"):
             try:
                 View.servico_inserir(descricao, float(valor))
                 st.success("Serviço inserido com sucesso")
-
             except ValueError as erro:
-            st.error(erro)
-            time.sleep(
-            2
-            )
+                st.error(erro)
+            time.sleep(2)
             st.rerun()
 
     def atualizar():
@@ -45,16 +44,26 @@ class ManterServicoUI:
             descricao = st.text_input("Nova descricao", op.get_descricao())
             valor = st.text_input("Novo valor", op.get_valor())
             if st.button("Atualizar serviço"):
-                id = op.get_id()
-                View.servico_atualizar(id, descricao, valor)
-                st.success("Serviço atualizado com sucesso")
+                try:
+                    id = op.get_id()
+                    View.servico_atualizar(id, descricao, valor)
+                    st.success("Serviço atualizado com sucesso")
+                except ValueError as erro:
+                    st.error(erro)
+                time.sleep(2)
+                st.rerun()
 
     def excluir():
         servicos = View.servico_listar()
         if len(servicos) == 0: st.write("Nenhum serviço cadastrado")
         else:
             op = st.selectbox("Exclusão de Serviços", servicos)
-            if st.button("Excluir serviço", ):
-                id = op.get_id()
-                View.servico_excluir(id)
-                st.success("Serviço excluído com sucesso")
+            if st.button("Excluir serviço"):
+                try:
+                    id = op.get_id()
+                    View.servico_excluir(id)
+                    st.success("Serviço excluído com sucesso")
+                except ValueError as erro:
+                    st.error(erro)
+                time.sleep(2)
+                st.rerun()

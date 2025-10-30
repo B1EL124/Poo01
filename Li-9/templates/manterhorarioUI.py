@@ -40,18 +40,21 @@ class ManterHorarioUI:
         servico = st.selectbox("Informe o serviço", servicos, index = None)
         profissional = st.selectbox("Informe o profissional", profissional, index = None)
         if st.button("Inserir"):
-            id_cliente = None
-            id_servico = None
-            id_profissional = None
-            if cliente != None: id_cliente = cliente.get_id()
-            if servico != None: id_servico = servico.get_id()
-            if profissional != None: id_profissional = profissional.get_id()
-            else:
-                st.warning("Inserir o profissional responsável")
-                return
+            try:
+                id_cliente = None
+                id_servico = None
+                id_profissional = None
+                if cliente != None: id_cliente = cliente.get_id()
+                if servico != None: id_servico = servico.get_id()
+                if profissional != None: id_profissional = profissional.get_id()
+                else:
+                    st.warning("Inserir o profissional responsável")
+                    return
 
-            View.horario_inserir(datetime.strptime(data, "%d/%m/%Y %H:%M"), confirmado, id_cliente, id_servico, id_profissional)
-            st.success("Horário inserido com sucesso")
+                View.horario_inserir(datetime.strptime(data, "%d/%m/%Y %H:%M"), confirmado, id_cliente, id_servico, id_profissional)
+                st.success("Horário inserido com sucesso")
+            except ValueError as erro:
+                st.error(erro)
 
     def atualizar():
         horarios = View.horario_listar()
@@ -76,14 +79,17 @@ class ManterHorarioUI:
             profissional = st.selectbox("Informe o novo profissional", profissional, next((i for i, p in enumerate(profissional) if p.get_id() == id_profissional), None))
 
             if st.button("Atualizar"): 
-                id_cliente = None
-                id_servico = None
-                id_profissional = None
-                if cliente != None: id_cliente = cliente.get_id()
-                if servico != None: id_servico = servico.get_id()
-                if profissional != None: id_profissional = profissional.get_id()
-                View.horario_atualizar(op.get_id(), datetime.strptime(data, "%d/%m/%Y %H:%M"), confirmado, id_cliente, id_servico, id_profissional)
-                st.success("Horário atualizado com sucesso")
+                try:
+                    id_cliente = None
+                    id_servico = None
+                    id_profissional = None
+                    if cliente != None: id_cliente = cliente.get_id()
+                    if servico != None: id_servico = servico.get_id()
+                    if profissional != None: id_profissional = profissional.get_id()
+                    View.horario_atualizar(op.get_id(), datetime.strptime(data, "%d/%m/%Y %H:%M"), confirmado, id_cliente, id_servico, id_profissional)
+                    st.success("Horário atualizado com sucesso")
+                except ValueError as erro:
+                    st.error(erro)
 
     def excluir():
         horarios = View.horario_listar()
@@ -91,7 +97,10 @@ class ManterHorarioUI:
         else:
             op = st.selectbox("Exclusão de Horários", horarios)
             if st.button("Excluir"):
-                View.horario_excluir(op.get_id())
-                st.success("Horário excluído com sucesso")
+                try:
+                    View.horario_excluir(op.get_id())
+                    st.success("Horário excluído com sucesso")
+                except ValueError as erro:
+                    st.error(erro)
                 time.sleep(2)
                 st.rerun()
