@@ -1,4 +1,5 @@
 import json
+from models.dao import DAO
 
 class Profissional:
     def __init__(self, id, nome, especialidade, conselho, email, senha):
@@ -51,7 +52,7 @@ class Profissional:
     def from_json(dic):
         return Profissional(dic["id"], dic["nome"], dic["especialidade"], dic["conselho"], dic["email"], dic["senha"])
 
-class ProfissionalDAO:
+class ProfissionalDAO(DAO):
     __objetos = []
     @classmethod
     def inserir(cls, obj):

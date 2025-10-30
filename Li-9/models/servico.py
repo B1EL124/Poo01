@@ -1,4 +1,5 @@
 import json
+from models.dao import DAO
 
 class Servico:
     def __init__(self, id, descricao, valor):
@@ -35,7 +36,7 @@ class Servico:
     def from_json(dic):
         return Servico(dic["id"], dic["descricao"], dic["valor"])
 
-class ServicoDAO:
+class ServicoDAO(DAO):
     __objetos = []
     @classmethod
     def inserir(cls, obj):

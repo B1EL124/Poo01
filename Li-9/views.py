@@ -9,7 +9,7 @@ class View:
         for c in View.cliente_listar():
             if c.get_email() == "admin":
                 return
-        View.cliente_inserir("admin", "admin", "fone", "1234")
+        View.cliente_inserir("admin", "admin", "fone", "1234", isadmin=True)
 
     def cliente_autenticar(email, senha):
         for c in View.cliente_listar():
@@ -24,9 +24,10 @@ class View:
     def cliente_listar_id(id):
         return ClienteDAO.listar_id(id)
     
-    def cliente_inserir(nome, email, fone, senha):
-        if email == "admin":
-            raise ValueError
+    def cliente_inserir(nome, email, fone, senha, isadmin=False):
+        if not isadmin:
+            if email == "admin":
+                raise ValueError
         for c in View.cliente_listar() + View.profissional_listar():
             if c.get_email() == email:
                 raise ValueError("Email já usado")
@@ -34,9 +35,10 @@ class View:
         cliente = Cliente(0, nome, email, fone, senha)
         ClienteDAO.inserir(cliente)
         
-    def cliente_atualizar(id, nome, email, fone, senha):
-        if email == "admin":
-            raise ValueError
+    def cliente_atualizar(id, nome, email, fone, senha, isadmin=False):
+        if not isadmin:
+            if email == "admin":
+                raise ValueError
         for c in View.cliente_listar() + View.profissional_listar():
             if c.get_email() == email:
                 raise ValueError("Email já usado")
