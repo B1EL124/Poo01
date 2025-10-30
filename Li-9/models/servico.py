@@ -25,7 +25,7 @@ class Servico:
         self.__descricao = descricao
 
     def set_valor(self, valor):
-        if valor <0: raise ValueError("Valor inválido")
+        if valor < 0: raise ValueError("Valor inválido")
         self.__valor = valor
         
     def to_json(self):
