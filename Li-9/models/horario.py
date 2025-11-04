@@ -29,7 +29,9 @@ class Horario:
     
     def set_id(self, id): self.__id = id
     def set_data(self, data):
-        if data < datetime(2025, 1, 1): raise ValueError("Ano inválido")
+        if data is None:
+            raise ValueError("Ano inválido")
+        
         self.__data = data
     def set_confirmado(self, confirmado): self.__confirmado = confirmado
     def set_id_cliente(self, id_cliente): self.__id_cliente = id_cliente
