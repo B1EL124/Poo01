@@ -27,7 +27,7 @@ class View:
     def cliente_inserir(nome, email, fone, senha, isadmin=False):
         if not isadmin:
             if email == "admin":
-                raise ValueError
+                raise ValueError("Inválido")
         for c in View.cliente_listar() + View.profissional_listar():
             if c.get_email() == email:
                 raise ValueError("Email já usado")

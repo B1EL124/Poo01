@@ -10,7 +10,7 @@ class Cliente:
         self.set_senha(senha)
 
     def __str__(self):
-        return f"{self.__id} - {self.__nome} - {self.__email} – {self.__fone}"
+        return f"{self.__id} - {self.__nome} - {self.__email} – {self.__fone} – {self.__senha}"
     
     def get_id(self):
         return self.__id
