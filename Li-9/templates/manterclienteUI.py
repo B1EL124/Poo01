@@ -37,6 +37,7 @@ class ManterClienteUI:
             st.rerun()
 
     def atualizar():
+        
         clientes = View.cliente_listar()
         if len(clientes) == 0: st.write("Nenhum cliente cadastrado")
         else:

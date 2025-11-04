@@ -46,6 +46,17 @@ class View:
         cliente = Cliente(id, nome, email, fone, senha)
         ClienteDAO.atualizar(cliente)
 
+    def cliente_atualizar(id, nome, email, fone, senha, isadmin=True):
+        if not isadmin:
+            if email == "admin":
+                raise ValueError("Invalido")
+        for c in View.cliente_listar() + View.profissional_listar():
+            if c.get_email().lower() == email.lower() and c.get_id() != id:
+                raise ValueError("Email já usado")
+            
+        cliente = Cliente(id, nome, email, fone, senha)
+        ClienteDAO.atualizar(cliente)
+
     def cliente_excluir(id):
         for h in View.horario_listar():
             if h.get_id_cliente() == id:
@@ -102,18 +113,18 @@ class View:
         for c in View.cliente_listar() + View.profissional_listar():
             if c.get_email() == email:
                 raise ValueError("Email já usado")
-            
         profissional = Profissional(0, nome, especialidade, conselho, email, senha)
         ProfissionalDAO.inserir(profissional)
+
     def profissional_atualizar(id, nome, especialidade, conselho, email, senha):
         if email == "admin":
             raise ValueError
         for c in View.cliente_listar() + View.profissional_listar():
-            if c.get_email() == email:
+            if c.get_email() == email and c.get_id() != id:
                 raise ValueError("Email já usado")
-            
         profissional = Profissional(id, nome, especialidade, conselho, email, senha)
         ProfissionalDAO.atualizar(profissional)
+
     def profissional_excluir(id):
         for h in View.horario_listar():
             if h.get_id_profissional() == id:
@@ -126,7 +137,6 @@ class View:
         for obj in View.horario_listar():
             if obj.get_data() == data and obj.get_id_profissional() == id_profissional:
                 raise ValueError("Serviço já agendado com esse profissional para essa hora")
-            
         c = Horario(0, data)
         c.set_confirmado(confirmado)
         c.set_id_cliente(id_cliente)
