@@ -1,3 +1,4 @@
+import os
 import json
 from models.dao import DAO
 
@@ -46,53 +47,16 @@ class Cliente:
         return Cliente(dic["id"], dic["nome"], dic["email"], dic["fone"], dic["senha"])
 
 class ClienteDAO(DAO):
-    __objetos = []
-    @classmethod
-    def inserir(cls, obj):
-        cls.abrir()
-        id = 0
-        for aux in cls.__objetos:
-            if aux.get_id() > id: id = aux.get_id()
-        obj.set_id(id + 1)
-        cls.__objetos.append(obj)
-        cls.salvar()
-
-    @classmethod
-    def listar(cls):
-        cls.abrir()
-        return cls.__objetos
-
-    @classmethod
-    def listar_id(cls, id):
-        cls.abrir()
-        for obj in cls.__objetos:
-            if obj.get_id() == id: return obj
-        return None
-    
-    @classmethod
-    def atualizar(cls, obj):
-        aux = cls.listar_id(obj.get_id())
-        if aux != None:
-            cls.__objetos.remove(aux)
-            cls.__objetos.append(obj)
-            cls.salvar()
-
-    @classmethod
-    def excluir(cls, obj):
-        aux = cls.listar_id(obj.get_id())
-        if aux != None:
-            cls.__objetos.remove(aux)
-            cls.salvar()
-
     @classmethod
     def abrir(cls):
         cls._objetos = []
         try:
-            with open("clientes.json", mode="r") as arquivo:
-                list_dic = json.load(arquivo)
-                for dic in list_dic:
-                    obj = Cliente.from_json(dic)
-                    cls._objetos.append(obj)
+            if os.path.exists("clientes.json") and os.path.getsize("clientes.json") > 0:
+                with open("clientes.json", mode="r") as arquivo:
+                    list_dic = json.load(arquivo)
+                    for dic in list_dic:
+                        obj = Cliente.from_json(dic)
+                        cls._objetos.append(obj)
         except FileNotFoundError:
             pass
 

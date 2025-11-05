@@ -41,14 +41,14 @@ class IndexUI:
     def sair_do_sistema():
         if st.sidebar.button("Sair"):
             del st.session_state["usuario_id"]
-            del st.session_state["usuario_nome"]
+            del st.session_state["usuario_email"]
             st.rerun()
 
     def sidebar():
         if "usuario_id" not in st.session_state:
             IndexUI.menu_visitante()
         else:
-            admin = st.session_state["usuario_nome"] == "admin"
+            admin = st.session_state["usuario_email"] == "admin"
             tipo_usuario = st.session_state["usuario_tipo"]
             st.sidebar.write("Bem-vindo(a), " + st.session_state["usuario_nome"])
             if admin:

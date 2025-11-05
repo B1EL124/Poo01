@@ -43,6 +43,7 @@ class ManterProfissionalUI:
         else:
             op = st.selectbox("Atualização de profissionais", profissionais)
             nome = st.text_input("Novo nome", op.get_nome())
+            
             especialidade = st.text_input("Nova especialidade", op.get_especialidade())
             conselho = st.text_input("Novo conselho", op.get_conselho())
             email = st.text_input("Novo email", op.get_email())
