@@ -38,9 +38,18 @@ class ConfirmarServicoUI:
             if horario is None:
                 st.error("Horário inválido.")
                 return
-
+            id_cliente = int(cliente_escolhido.split(" - ")[0])
+            cliente_nome = cliente_escolhido.split(" - ")[1]
+            horario.set_id_cliente(id_cliente)
             horario.set_confirmado(True)
-            View.horario_atualizar(horario.get_id(), horario.get_data(), horario.get_confirmado(), horario.get_id_cliente(), horario.get_id_servico(), horario.get_id_profissional())
-            st.success("Serviço confirmado com sucesso!")
+            View.horario_atualizar(
+                horario.get_id(),
+                horario.get_data(),
+                horario.get_confirmado(),
+                horario.get_id_cliente(),
+                horario.get_id_servico(),
+                horario.get_id_profissional()
+            )
+            st.success(f"Serviço confirmado com sucesso para o cliente {cliente_nome}!")
             time.sleep(2)
             st.rerun()
