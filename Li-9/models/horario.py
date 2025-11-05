@@ -31,7 +31,7 @@ class Horario:
     def set_id(self, id): self.__id = id
     def set_data(self, data):
         if data is None:
-            raise ValueError("Ano inválido")
+            raise ValueError("Data inválida")
         
         self.__data = data
     def set_confirmado(self, confirmado): self.__confirmado = confirmado
@@ -51,15 +51,6 @@ class Horario:
         horario.set_id_servico(dic.get("id_servico", 0))
         horario.set_id_profissional(dic.get("id_profissional", 0))
         return horario
-
-    '''@staticmethod
-    def from_json(dic):
-        horario = Horario(dic["id"], datetime.strptime(dic["data"], "%d/%m/%Y %H:%M"))
-        horario.set_confirmado(dic["confirmado"])
-        horario.set_id_cliente(dic["id_cliente"])
-        horario.set_id_servico(dic["id_servico"])
-        horario.set_id_profissional(dic["id_profissional"])
-        return horario'''
 
 class HorarioDAO(DAO):
     @classmethod

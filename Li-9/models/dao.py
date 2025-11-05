@@ -18,7 +18,6 @@ class DAO(ABC):
     @classmethod
     def listar(cls):
         cls.abrir()
-        print(cls._objetos, cls, "PAUUUU")
         return cls._objetos
 
     @classmethod

@@ -65,7 +65,6 @@ class ProfissionalDAO(DAO):
                         cls._objetos.append(obj)
         except FileNotFoundError:
             pass
-        print(cls._objetos, cls, "CUUUUU")
 
     @classmethod
     def salvar(cls):
