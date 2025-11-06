@@ -31,8 +31,6 @@ class Horario:
     def set_id(self, id): 
         self.__id = id
     def set_data(self, data):
-        if data is None:
-            raise ValueError("Data inválida")
         self.__data = data
     def set_confirmado(self, confirmado):
         self.__confirmado = confirmado
