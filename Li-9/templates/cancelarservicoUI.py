@@ -1,8 +1,10 @@
 import streamlit as st
 from views import View
+import pandas as pd
+import time
+from datetime import datetime
 
-
-class CancelarServiciUI:
+class CancelarServicoUI:
     def main():
         st.header("Cancelar Serviço")
 
@@ -15,4 +17,28 @@ class CancelarServiciUI:
         horarios = View.horario_filtrar_cliente(id_cliente)
 
         if len(horarios) == 0:
-           st.info("Nenhum serviço a")
+            st.info("Nenhum serviço agendado ainda.")
+        else:
+            dados = []
+            for h in horarios:
+                profissional = View.profissional_listar_id(h.get_id_profissional())
+                servico = View.servico_listar_id(h.get_id_servico())
+
+                dados.append({
+                    "ID": h.get_id(),
+                    "Data": h.get_data().strftime("%d/%m/%Y %H:%M") if h.get_data() else "",
+                    "Confirmado": True if h.get_confirmado() else False,
+                    "Profissional": profissional.get_nome() if profissional else None,
+                    "Serviço": servico.get_descricao() if servico else None
+                })
+            df = pd.DataFrame(dados)
+            st.dataframe(df, use_container_width=True)
+            op = st.selectbox("Excluir Horários", horarios)
+            if st.button("Excluir"):
+                try:
+                    View.horario_excluir(op.get_id())
+                    st.success("Horário excluído com sucesso")
+                except ValueError as erro:
+                    st.error(erro)
+                time.sleep(2)
+                st.rerun()

@@ -26,9 +26,9 @@ class ConfirmarServicoUI:
         opcao_horario = st.selectbox("Informe o horário para confirmar", opcoes_horarios)
         id_horario = int(opcao_horario.split(" - ")[0])
         horario = View.horario_listar_id(id_horario)
-
         clientes = View.cliente_listar()
         opcoes_clientes = []
+        
         for c in clientes:
             opcoes_clientes.append(f"{c.get_id()} - {c.get_nome()} - {c.get_email()} - {c.get_fone()}")
 

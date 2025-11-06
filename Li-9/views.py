@@ -194,7 +194,7 @@ class View:
 
     def horario_excluir(id):
         obj = View.horario_listar_id(id)
-        if not obj.get_id_cliente() == None:
+        if obj.get_confirmado() == True:
             raise ValueError("Horário já está agendado")
         
         c = Horario(id, None)

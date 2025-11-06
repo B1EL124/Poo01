@@ -7,7 +7,6 @@ class DAO(ABC):
     def inserir(cls, obj):
         cls.abrir()
         id = 0
-
         for aux in cls._objetos:
             if aux.get_id() > id: id = aux.get_id()
             
