@@ -3,17 +3,16 @@ from models.dao import DAO
 import os
 
 class Profissional:
-    def __init__(self, id, nome, especialidade, conselho, email, senha, privilegio):
+    def __init__(self, id, nome, especialidade, conselho, email, senha):
         self.set_id(id)
         self.set_nome(nome)
         self.set_especialidade(especialidade)
         self.set_conselho(conselho)
         self.set_email(email)
         self.set_senha(senha)
-        self.set_privilegio(privilegio)
 
     def __str__(self):
-        return f"{self.__id} - {self.__nome} - {self.__especialidade} – {self.__conselho} – {self.__email} – {self.__senha} – {self.__privilegio}"
+        return f"{self.__id} - {self.__nome} - {self.__especialidade} – {self.__conselho} – {self.__email} – {self.__senha}"
     
     def get_id(self):
         return self.__id
@@ -27,8 +26,6 @@ class Profissional:
         return self.__email
     def get_senha(self):
         return self.__senha
-    def get_privilegio(self):
-        return self.__privilegio
     
 
     def set_id(self, id):
@@ -46,17 +43,14 @@ class Profissional:
     def set_senha(self, senha):
         if senha == "": raise ValueError("Senha inválida")
         self.__senha = senha
-    def set_privilegio(self, privilegio):
-        privilegio = 1
-        self.__privilegio = privilegio
 
     def to_json(self):
-        dic = {"id":self.__id, "nome":self.__nome, "especialidade":self.__especialidade, "conselho":self.__conselho, "email":self.__email, "senha":self.__senha, "privilegio":self.__privilegio}
+        dic = {"id":self.__id, "nome":self.__nome, "especialidade":self.__especialidade, "conselho":self.__conselho, "email":self.__email, "senha":self.__senha}
         return dic
     
     @staticmethod
     def from_json(dic):
-        return Profissional(dic["id"], dic["nome"], dic["especialidade"], dic["conselho"], dic["email"], dic["senha"], dic["privilegio"])
+        return Profissional(dic["id"], dic["nome"], dic["especialidade"], dic["conselho"], dic["email"], dic["senha"])
 
 class ProfissionalDAO(DAO):
     @classmethod
