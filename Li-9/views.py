@@ -1,20 +1,20 @@
 from datetime import datetime
 from models.horario import Horario, HorarioDAO
 from models.cliente import Cliente, ClienteDAO
-from models.servico import Servico, ServicoDAO
 from models.profissional import Profissional, ProfissionalDAO
+from models.servico import Servico, ServicoDAO
 
 class View:
     def cliente_criar_admin():
         for c in View.cliente_listar():
             if c.get_email() == "admin":
                 return c.get_id()
-        View.cliente_inserir("admin", "admin", "fone", "1234", isadmin=True)
+        View.cliente_inserir("admin", "admin", "fone", "1234", "1", isadmin=True)
 
-    def cliente_autenticar(nome, email, senha):
+    def cliente_autenticar(nome, email, senha, privilegio):
         for c in View.cliente_listar():
             if c.get_email() == email and c.get_senha() == senha:
-                return {"id": c.get_id(), "email": c.get_email(), "nome": c.get_nome()}
+                return {"id": c.get_id(), "email": c.get_email(), "nome": c.get_nome(), "privilegio": c.get_privilegio()}
         return None
 
     def cliente_listar():
@@ -24,7 +24,7 @@ class View:
     def cliente_listar_id(id):
         return ClienteDAO.listar_id(id)
     
-    def cliente_inserir(nome, email, fone, senha, isadmin=False):
+    def cliente_inserir(nome, email, fone, senha, privilegio, isadmin=False):
         if not isadmin:
             if email == "admin":
                 raise ValueError("Inválido")
@@ -32,10 +32,10 @@ class View:
             if c.get_email() == email:
                 raise ValueError("Email já usado")
         
-        cliente = Cliente(0, nome, email, fone, senha)
+        cliente = Cliente(0, nome, email, fone, senha, privilegio)
         ClienteDAO.inserir(cliente)
         
-    def cliente_atualizar(id, nome, email, fone, senha, isadmin=False):
+    def cliente_atualizar(id, nome, email, fone, senha, privilegio, isadmin=False):
         if not isadmin:
             if email == "admin":
                 raise ValueError("Invalido")
@@ -43,10 +43,10 @@ class View:
             if c.get_email() == email:
                 raise ValueError("Email já usado")
             
-        cliente = Cliente(id, nome, email, fone, senha)
+        cliente = Cliente(id, nome, email, fone, senha, privilegio)
         ClienteDAO.atualizar(cliente)
 
-    def cliente_atualizar(id, nome, email, fone, senha, isadmin=True):
+    def cliente_atualizar(id, nome, email, fone, senha, privilegio, isadmin=True):
         if not isadmin:
             if email == "admin":
                 raise ValueError("Invalido")
@@ -54,7 +54,7 @@ class View:
             if c.get_email().lower() == email.lower() and c.get_id() != id:
                 raise ValueError("Email já usado")
             
-        cliente = Cliente(id, nome, email, fone, senha)
+        cliente = Cliente(id, nome, email, fone, senha, privilegio)
         ClienteDAO.atualizar(cliente)
 
     def cliente_excluir(id):
@@ -62,7 +62,7 @@ class View:
             if h.get_id_cliente() == id:
                 raise ValueError("Não é possível remover clientes com horários marcados")
 
-        cliente = Cliente(id, "_", "_", "_", "_")
+        cliente = Cliente(id, "_", "_", "_", "_", "_")
         ClienteDAO.excluir(cliente)
 
     def servico_listar():

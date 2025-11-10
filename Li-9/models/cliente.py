@@ -3,15 +3,16 @@ import json
 from models.dao import DAO
 
 class Cliente:
-    def __init__(self, id, nome, email, fone, senha):
+    def __init__(self, id, nome, email, fone, senha, privilegio):
         self.set_id(id)
         self.set_nome(nome)
         self.set_email(email)
         self.set_fone(fone)
         self.set_senha(senha)
+        self.set_privilegio(privilegio)
 
     def __str__(self):
-        return f"{self.__id} - {self.__nome} - {self.__email} – {self.__fone} – {self.__senha}"
+        return f"{self.__id} - {self.__nome} - {self.__email} – {self.__fone} – {self.__senha} – {self.__privilegio}"
     
     def get_id(self):
         return self.__id
@@ -23,28 +24,37 @@ class Cliente:
         return self.__fone
     def get_senha(self):
         return self.__senha
+    def get_privilegio(self):
+        return self.__privilegio
 
     def set_id(self, id):
         self.__id = id
     def set_nome(self, nome):
-        if nome == "": raise ValueError("Nome inválido")
+        if nome == "":
+            raise ValueError("Nome inválido")
         self.__nome = nome
     def set_email(self, email):
-        if email == "": raise ValueError("E-mail inválido")
+        if email == "":
+            raise ValueError("E-mail inválido")
         self.__email = email
     def set_fone(self, fone):
         self.__fone = fone
     def set_senha(self, senha):
-        if senha == "": raise ValueError("Senha inválida")
+        if senha == "":
+            raise ValueError("Senha inválida")
         self.__senha = senha
+    def set_privilegio(self, privilegio):
+        if privilegio == "":
+            raise ValueError("Valor inválida")
+        self.__privilegio = privilegio
         
     def to_json(self):
-        dic = {"id":self.__id, "nome":self.__nome, "email":self.__email, "fone":self.__fone, "senha":self.__senha}
+        dic = {"id":self.__id, "nome":self.__nome, "email":self.__email, "fone":self.__fone, "senha":self.__senha, "privilegio":self.__privilegio}
         return dic
     
     @staticmethod
     def from_json(dic):
-        return Cliente(dic["id"], dic["nome"], dic["email"], dic["fone"], dic["senha"])
+        return Cliente(dic["id"], dic["nome"], dic["email"], dic["fone"], dic["senha"], dic["privilegio"])
 
 class ClienteDAO(DAO):
     @classmethod
