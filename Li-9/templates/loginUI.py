@@ -7,7 +7,7 @@ class LoginUI:
         email = st.text_input("Informe o e-mail")
         senha = st.text_input("Informe a senha", type="password")
         nome = ""
-        privilegio = 0
+        privilegio = ""
         if st.button("Entrar"):
             c = View.cliente_autenticar(nome, email, senha, privilegio)
             p = View.profissional_autenticar(nome, email, senha)

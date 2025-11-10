@@ -1,1 +1,1 @@
-[{"id": 1, "nome": "admin", "email": "admin", "fone": "fone", "senha": "1234", "privilegio": "1"}, {"id": 2, "nome": "Gabinha", "email": "g.alb@escolar", "fone": "98765432", "senha": "1234", "privilegio": 0}]
+[{"id": 1, "nome": "admin", "email": "admin", "fone": "fone", "senha": "1234", "privilegio": "1"}, {"id": 2, "nome": "albino", "email": "albino", "fone": "albino", "senha": "albino", "privilegio": "0"}, {"id": 3, "nome": "killton", "email": "killton", "fone": "killton", "senha": "killton", "privilegio": "1"}]

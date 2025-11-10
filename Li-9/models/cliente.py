@@ -45,7 +45,7 @@ class Cliente:
         self.__senha = senha
     def set_privilegio(self, privilegio):
         if privilegio == "":
-            raise ValueError("Valor inválida")
+            raise ValueError("Valor inválido")
         self.__privilegio = privilegio
         
     def to_json(self):

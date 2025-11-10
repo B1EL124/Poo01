@@ -107,22 +107,22 @@ class View:
         return r
     def profissional_listar_id(id):
         return ProfissionalDAO.listar_id(id)
-    def profissional_inserir(nome, especialidade, conselho, email, senha):
+    def profissional_inserir(nome, especialidade, conselho, email, senha, privilegio):
         if email == "admin":
             raise ValueError
         for c in View.cliente_listar() + View.profissional_listar():
             if c.get_email() == email:
                 raise ValueError("Email já usado")
-        profissional = Profissional(0, nome, especialidade, conselho, email, senha)
+        profissional = Profissional(0, nome, especialidade, conselho, email, senha, privilegio)
         ProfissionalDAO.inserir(profissional)
 
-    def profissional_atualizar(id, nome, especialidade, conselho, email, senha):
+    def profissional_atualizar(id, nome, especialidade, conselho, email, senha, privilegio):
         if email == "admin":
             raise ValueError
         for c in View.cliente_listar() + View.profissional_listar():
             if c.get_email() == email and c.get_id() != id:
                 raise ValueError("Email já usado")
-        profissional = Profissional(id, nome, especialidade, conselho, email, senha)
+        profissional = Profissional(id, nome, especialidade, conselho, email, senha, privilegio)
         ProfissionalDAO.atualizar(profissional)
 
     def profissional_excluir(id):

@@ -8,16 +8,15 @@ class CancelarServicoUI:
     def main():
         st.header("Cancelar Serviço")
 
-        privilegio = st.session_state["usuario_privilegio"]
         id_cliente = st.session_state["usuario_id"]
 
         if "usuario_id" not in st.session_state:
             st.error("Nenhum cliente logado.")
             return
         
-        if privilegio < 1:
-            st.error("Desprivilegiado")
-            return
+        if int(st.session_state["usuario_privilegio"]) < 1:
+                st.error("Desprivilegiado")
+                return
 
         horarios = View.horario_filtrar_cliente(id_cliente)
 

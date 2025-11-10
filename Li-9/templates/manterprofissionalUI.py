@@ -28,9 +28,10 @@ class ManterProfissionalUI:
         conselho = st.text_input("Informe o conselho")
         email = st.text_input("Informe o email")
         senha = st.text_input("Informe o senha")
+        privilegio = st.text_input("Informe o nível de privilégio")
         if st.button("Inserir profissional"):
             try:
-                View.profissional_inserir(nome, especialidade, conselho, email, senha)
+                View.profissional_inserir(nome, especialidade, conselho, email, senha, privilegio)
                 st.success("Profissional inserido com sucesso")
             except ValueError as erro:
                 st.error(erro)
@@ -48,10 +49,11 @@ class ManterProfissionalUI:
             conselho = st.text_input("Novo conselho", op.get_conselho())
             email = st.text_input("Novo email", op.get_email())
             senha = st.text_input("Novo senha", op.get_senha())
+            privilegio = st.text_input("Novo privilégio", op.get_privilegio())
             if st.button("Atualizar profissional"):
                 try:
                     id = op.get_id()
-                    View.profissional_atualizar(id, nome, especialidade, conselho, email, senha)
+                    View.profissional_atualizar(id, nome, especialidade, conselho, email, senha, privilegio)
                     st.success("Profissional atualizado com sucesso")
                 except ValueError as erro:
                     st.error(erro)
